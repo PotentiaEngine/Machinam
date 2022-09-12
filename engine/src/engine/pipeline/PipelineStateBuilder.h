@@ -2,6 +2,6 @@
 
 #include "pch.h"
 class PipelineStateBuilder {
-  public:
-  static  sptr(PipelineStateBuilder) NewBuilder();
+public:
+  static sptr(PipelineStateBuilder) NewBuilder();
 };
