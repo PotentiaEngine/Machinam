@@ -1,0 +1,5 @@
+
+.cache/clangd/index
+build
+vcpkg
+compile_commands.json
