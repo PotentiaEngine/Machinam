@@ -8,7 +8,7 @@ void Shader::Create(std::string path, std::string entrypoint) {
 
   ThrowOnFail(
       D3DCompileFromFile(wstr.c_str(),
-                         nullptr, nullptr, "VSMain", "vs_5.0", 0, 0, &m_blob, nullptr));
+                         nullptr, nullptr, entrypoint.c_str(), "vs_5.0", 0, 0, &m_blob, nullptr));
 
 }
 

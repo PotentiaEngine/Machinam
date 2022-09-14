@@ -7,23 +7,25 @@
 #include "infra/surface/SwapChain.h"
 #include <winuser.h>
 
-void GameRunner::InitWithWindow(Shared(GameWindow) window) {
+#define EBRun(game, call) game->GetEngineBehaviourRegistry()->RunForAll(std::function([](Shared(EngineBehaviour) b) { call; }))
+
+void GameRunner::InitWithWindow(Shared(GameInstance) game) {
   LogicalDevice::Get()->Create();
   CommandQueue::Get()->Create();
   SwapChain::Get()->Create();
   RenderTargetViews::Get()->Create();
   CommandAllocator::Get()->Create();
-  window->Show();
+  GameWindow::Get()->Show();
+  m_game = game;
 }
 
 void GameRunner::Run() {
   MSG msg = {};
   while (msg.message != WM_QUIT) {
     if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-      if (msg.message == WM_KEYDOWN) {
-        // Engine Behaviour global functionality for engine whilst being
-        // component-like system
-      }
+      
+      EBRun(m_game, b->Update()); 
+
       TranslateMessage(&msg);
       DispatchMessage(&msg);
     }
