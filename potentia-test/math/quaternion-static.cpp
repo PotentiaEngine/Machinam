@@ -2,6 +2,6 @@
 
 #include <potentia/math/quat/Quaternion.h>
 
-TEST(QuaterionStatic, CorrectlyHandlesBaryCentric_HappyPath) {
 
+TEST(QuaterionStatic, GenerateCorreectAxisAngleQuat) {
 }

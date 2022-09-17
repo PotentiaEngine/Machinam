@@ -8,7 +8,7 @@ Quaternion Quaternion::FromAPIVector(XMVECTOR apiVector) {
 }
 
 Quaternion Quaternion::BaryCentric(Quaternion q0, Quaternion q1, Quaternion q2, float f, float g) {
-  return Quaternion::FromAPIVector(XMQuaternionBaryCentric(q0.m_vector, q1.m_vector, q2.m_vector, f, g));
+  return FromAPIVector(XMQuaternionBaryCentric(q0.m_vector, q1.m_vector, q2.m_vector, f, g));
 }
 
 Quaternion Quaternion::BaryCentricV(Quaternion q0, Quaternion q1, Quaternion q2, Float4 f, Float4 g) {
