@@ -15,6 +15,6 @@ class PipelineState {
   ComP(ID3D12PipelineState) GetPSO() const {return m_pso; };
  protected: 
   ComP(ID3D12PipelineState) m_pso;
-  D3D12_GRAPHICS_PIPELINE_STATE_DESC desc;
+  Shared(D3D12_GRAPHICS_PIPELINE_STATE_DESC) desc;
   bool hasFinished;
 };

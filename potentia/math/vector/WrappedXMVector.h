@@ -4,8 +4,8 @@
 
 class WrappedXMVector {
   public:
-    Shared(XMVECTOR) GetVec() const { return m_vector; }
-    void Set(XMVECTOR inner) { m_vector = MakeShared(XMVECTOR, inner); };
+    XMVECTOR GetVec() const { return m_vector; }
+    void Set(XMVECTOR inner) { m_vector = XMVECTOR(); };
   protected:
-    Shared(XMVECTOR) m_vector;
+    XMVECTOR m_vector;
 };

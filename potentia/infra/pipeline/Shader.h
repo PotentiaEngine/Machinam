@@ -4,7 +4,7 @@
 
 class Shader {
   public:
-    void Create(std::string path, std::string entrypoint);
+    void Create(std::string path, std::string entrypoint, std::string version);
     CD3DX12_SHADER_BYTECODE GetBytecode(); 
     enum StageType {
       Vertex,

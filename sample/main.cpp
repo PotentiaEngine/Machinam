@@ -1,8 +1,8 @@
 #include "SampleGame.h"
-#include "core/EngineCore.h"
-#include "core/macros.h"
-#include "infra/GameRunner.h"
-#include "infra/window/GameWindow.h"
+#include <potentia/core/EngineCore.h>
+#include <potentia/core/macros.h>
+#include <potentia/infra/GameRunner.h>
+#include <potentia/infra/window/GameWindow.h>
 
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE previousHInstance,

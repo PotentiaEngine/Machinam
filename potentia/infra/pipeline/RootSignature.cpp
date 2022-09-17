@@ -3,7 +3,7 @@
 #include "infra/devices/LogicalDevice.h"
 
 void RootSignature::CreateEmpty() {
-  CD3DX12_ROOT_SIGNATURE_DESC desc = {};
+  CD3DX12_ROOT_SIGNATURE_DESC desc;
   desc.Init(0, nullptr, 0, nullptr,
             D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 

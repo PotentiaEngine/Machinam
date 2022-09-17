@@ -18,7 +18,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-
+#include <comdef.h>
 #include "d3dx12.h"
 #include "macros.h"
 using namespace DirectX;
@@ -28,7 +28,9 @@ using namespace DirectX;
 #pragma comment(lib, "dxgi")
 
 inline void ThrowOnFail(HRESULT hr) {
- if (FAILED(hr)) {
-   throw std::exception("IT BROK???");
+ 
+if (FAILED(hr)) {
+  _com_error err(hr);
+  throw std::exception("IT BROK???");
  }
 }

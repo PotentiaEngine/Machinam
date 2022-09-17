@@ -1,13 +1,14 @@
 #pragma once
 
 #include "core/EngineCore.h"
-#include <d3d12.h>
+#include "core/macros.h"
+#include "infra/pipeline/PipelineState.h"
 
 class CommandList {
   public:
-    void Create();
-    ComP(ID3D12CommandList) GetCommandList() const { return m_commandList; }
+    void Create(Shared(PipelineState) pso);
+    ComP(ID3D12GraphicsCommandList) GetCommandList() const { return m_commandList; }
     void Close();
   protected:
-    ComP(ID3D12CommandList) m_commandList;
+    ComP(ID3D12GraphicsCommandList) m_commandList;
 };

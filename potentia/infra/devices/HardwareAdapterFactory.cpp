@@ -45,5 +45,5 @@ void HardwareAdapterFactory::GetHardwareAdapter(
       }
     }
   }
-  *ppAdapter = adapter.Get();
+  *ppAdapter = adapter.Detach();
 }

@@ -5,7 +5,7 @@
 #include "math/vector/WrappedXMVector.h"
 #include <DirectXMath.h>
 
-class Float3 : WrappedXMVector {
+class Float3 : public WrappedXMVector {
   public:
     struct Raw {
       float x;

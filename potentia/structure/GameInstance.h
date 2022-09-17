@@ -4,25 +4,29 @@
 #include "Registry.h"
 #include "infra/pipeline/PipelineState.h"
 #include "structure/behaviour/EngineBehaviour.h"
+#include "structure/pipeline/GraphicsPipeline.h"
 
 class GameInstance {
 public:
   GameInstance();
+  void Render();
   // same for levels + assets
   Shared(Registry<EngineBehaviour>) GetEngineBehaviourRegistry() const {
     return m_engineBehaviours;
   };
-  Shared(std::vector<Shared(PipelineState)>) GetAllPSOs() const {
-    return m_psos;
-  };
 
-protected:
-  virtual void RegisterRoot() {};
+  Shared(Registry<GraphicsPipeline>) GetGraphicsPipelines() {
+    return m_graphicsPipelines;
+  }
+
+  virtual void RegisterRoot() = 0;
   
-  void RegisterPSO(Shared(PipelineState));
+  void RegisterPipeline(Shared(GraphicsPipeline) pipline) {
+    m_graphicsPipelines->Register(pipline);
+  }
 
-  Shared(std::vector<Shared(PipelineState)>) m_psos;
   // same for levels + assets
   Shared(Registry<EngineBehaviour>) m_engineBehaviours;
+  Shared(Registry<GraphicsPipeline>) m_graphicsPipelines;
 };
 

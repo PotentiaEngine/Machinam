@@ -4,8 +4,9 @@
 #include "math/vector/Float3.h"
 #include "math/vector/Float4.h"
 
-class Vertex {
+struct Vertex {
+    
 public:
-  Float3 position;
-  Float4 color;
+  Float4::Raw position;
+  Float4::Raw color;
 };

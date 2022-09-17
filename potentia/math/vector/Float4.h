@@ -4,7 +4,7 @@
 #include "core/macros.h"
 #include "math/vector/WrappedXMVector.h"
 
-class Float4 : WrappedXMVector {
+class Float4 : public WrappedXMVector {
   public:
     struct Raw {
       float x;

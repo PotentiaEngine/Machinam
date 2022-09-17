@@ -2,8 +2,14 @@
 
 #include "core/EngineCore.h"
 #include "infra/command/CommandList.h"
+#include <d3d12.h>
 
-class AsbtractBuffer {
+class AbstractBuffer {
   public:
-    void Create(UINT size, BYTE* data, D3D12_RESOURCE_STATES states, Shared(CommandList) cmdList);
+    void CreateResource(UINT size);
+    void Map(BYTE* data);
+    
+  protected:
+    ComP(ID3D12Resource) m_buffer; 
+    UINT m_size;
 };

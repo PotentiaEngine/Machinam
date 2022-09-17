@@ -1,8 +1,10 @@
 #pragma once
 
-#include "structure/GameInstance.h"
+#include <potentia/structure/GameInstance.h>
 
 class SampleGame : public GameInstance {
-  protected:
+  public:
+    SampleGame();
+
     void RegisterRoot() override;
 };
