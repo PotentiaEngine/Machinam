@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(Potentia VERSION 0.0.1.0 LANGUAGES CXX)
 
-
 # ENGINE
 
 file(GLOB_RECURSE ENGINE_FILES "potentia/**/*.h" "potentia/**/*.cpp")
@@ -16,6 +15,8 @@ target_include_directories(PotentiaEngine PUBLIC "./potentia/")
 
 # TESTS
 
+include(GoogleTest)
+enable_testing()
 file(GLOB_RECURSE TEST_FILES "./potentia-test/*/*.h" "./potentia-test/*/*.cpp")
 
 add_executable(PotentiaTest ${TEST_FILES})
@@ -23,6 +24,7 @@ target_link_libraries(PotentiaTest PUBLIC PotentiaEngine)
 target_include_directories(PotentiaTest PUBLIC "./")
 find_package(GTest CONFIG REQUIRED)
 target_link_libraries(PotentiaTest PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
+gtest_add_tests(TARGET PotentiaTest ${TEST_FILES})
 
 # SAMPLE
 

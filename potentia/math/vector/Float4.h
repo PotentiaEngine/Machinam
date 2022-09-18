@@ -2,9 +2,10 @@
 
 #include "core/EngineCore.h"
 #include "core/macros.h"
-#include "math/vector/WrappedXMVector.h"
+#include "math/vector/VectorBase.h"
+#include <DirectXMath.h>
 
-class Float4 : public WrappedXMVector {
+class Float4 : public VectorBase {
   public:
     struct Raw {
       float x;

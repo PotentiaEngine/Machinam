@@ -53,4 +53,5 @@ class Quaternion {
 
   protected:
     XMVECTOR m_vector;
+    Quaternion& SetVectorChainable(XMVECTOR vector);
 };
