@@ -32,3 +32,15 @@ file(GLOB_RECURSE SAMPLE_FILES "sample/*.h" "sample/*.cpp")
 add_executable(PotentiaSample WIN32 ${SAMPLE_FILES})
 target_link_libraries(PotentiaSample PUBLIC PotentiaEngine)
 target_include_directories(PotentiaSample PUBLIC "./")
+
+
+# --- TOOLS ---
+
+## ASSET BUNDLER
+file (GLOB_RECURSE ASSET_BUNDLER_FILES "./tools/asset-bundler/*/*.h" "./tools/asset-bundler/*/*.cpp" "./tools/asset-bundler/*.h" "./tools/asset-bundler/*.cpp")
+add_executable(PotentiaTool_AssetBundler ${ASSET_BUNDLER_FILES})
+target_include_directories(PotentiaTool_AssetBundler PUBLIC ./tools/asset-bundler/)
+find_package(CLI11 CONFIG REQUIRED)
+target_link_libraries(PotentiaTool_AssetBundler PRIVATE CLI11::CLI11)
+find_package(assimp CONFIG REQUIRED)
+target_link_libraries(PotentiaTool_AssetBundler PRIVATE assimp::assimp)

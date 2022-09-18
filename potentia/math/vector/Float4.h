@@ -7,6 +7,7 @@
 
 class Float4 : public VectorBase {
   public:
+    static Float4 FromAPIVector(XMVECTOR vector);
     struct Raw {
       float x;
       float y;

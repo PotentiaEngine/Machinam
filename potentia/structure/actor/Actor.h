@@ -5,6 +5,5 @@
 #include "structure/base/ComponentActor.h"
 
 class Actor : public ComponentActor {
-  protected:
-    Shared()
+
 };

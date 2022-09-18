@@ -7,3 +7,9 @@ Float4::Raw Float4::ToRaw() {
   auto w = XMVectorGetW(m_vector);
   return {x, y, z, w};
 }
+
+Float4 Float4::FromAPIVector(XMVECTOR vector) {
+  Float4 f;
+  f.Set(vector);
+  return f;
+}

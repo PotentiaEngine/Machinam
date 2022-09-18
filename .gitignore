@@ -1,5 +1,7 @@
 
-.cache/clangd/index
+.cache/
 build
-vcpkg
+.vscode/
 compile_commands.json
+.obsidian/
+Testing/

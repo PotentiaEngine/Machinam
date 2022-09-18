@@ -4,4 +4,5 @@ Component-like registry-based globally effective scripts which allow adding func
 
 
 ## Plugin System
-plugins define groups of functionality/object can be added as bundles (the egnine default plugins)  or individually
+plugins define groups of functionality/object can be added as bundles (the egnine default plugins) or individually
+

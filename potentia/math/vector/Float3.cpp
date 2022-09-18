@@ -8,3 +8,8 @@ Float3::Raw Float3::ToRaw() {
   return {x, y, z};
 }
 
+Float3 Float3::FromAPIVector(XMVECTOR vector) {
+  Float3 f;
+  f.Set(vector);
+  return f;
+}
