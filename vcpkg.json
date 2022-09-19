@@ -1,0 +1,7 @@
+{
+  "name": "potentia",
+  "version-string": "0.0.1.0",
+  "dependencies": [
+    "gtest:x64-windows"
+  ]
+}
