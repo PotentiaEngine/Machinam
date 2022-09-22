@@ -8,8 +8,6 @@ project(
   VERSION 0.0.1.0
   LANGUAGES CXX)
 
-# ENGINE
-
 file(GLOB_RECURSE ENGINE_FILES "src/**/*.h" "src/**/*.cpp")
 add_library(PotentiaEngine ${ENGINE_FILES})
 target_include_directories(PotentiaEngine PUBLIC "./src/")
@@ -18,6 +16,8 @@ target_include_directories(PotentiaEngine PRIVATE ${VULKAN_HPP_INCLUDE_DIRS})
 find_package(Eigen3 CONFIG REQUIRED)
 target_link_libraries(PotentiaEngine PRIVATE Eigen3::Eigen)
 find_package(glfw3 CONFIG REQUIRED)
-target_link_libraries(PotentiaEngine PRIVATE glfw3)
+target_link_libraries(PotentiaEngine PRIVATE glfw)
 find_package(glm CONFIG REQUIRED)
 target_link_libraries(PotentiaEngine PRIVATE glm)
+
+add_subdirectory(./samples/)
