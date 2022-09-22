@@ -1,7 +1,8 @@
-
 .cache/
-build
+build/
 .vscode/
 compile_commands.json
 .obsidian/
 Testing/
+vcpkg_installed/
+user/
