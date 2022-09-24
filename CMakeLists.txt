@@ -21,3 +21,4 @@ find_package(glm CONFIG REQUIRED)
 target_link_libraries(PotentiaEngine PUBLIC glm::glm)
 
 add_subdirectory(./samples/)
+add_subdirectory(./tools)

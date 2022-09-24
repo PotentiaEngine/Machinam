@@ -7,3 +7,4 @@ file(GLOB_RECURSE SRC_FILES "src/*.h" "src/*/*.h" "src/*.cpp" "src/*/*.cpp")
 
 add_executable(PotentiaSample_SimpleTriangle ${SRC_FILES})
 target_link_libraries(PotentiaSample_SimpleTriangle PUBLIC PotentiaEngine)
+
