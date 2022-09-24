@@ -11,6 +11,7 @@ class hal_factory : public hal_storage<hal_factory> {
 public:
   void initialize();
   void destroy();
+  void run();
   std::shared_ptr<pipeline_layout> create_pipeline_layout();
   std::shared_ptr<pipeline>
   create_pipeline(std::shared_ptr<pipeline_layout> layout);

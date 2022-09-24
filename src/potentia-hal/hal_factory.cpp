@@ -24,6 +24,12 @@ void hal_factory::destroy() {
   m_window->destroy();
 }
 
+void hal_factory::run() {
+  initialize();
+  while (!m_window->should_close()) {
+  }
+}
+
 std::shared_ptr<pipeline_layout> hal_factory::create_pipeline_layout() {
   auto layout = std::make_shared<vk_pipeline_layout>();
   layout->initialize();

@@ -10,3 +10,5 @@ void vk_window::initialize() {
       config_strings::instance()->get_value(game_window_title).c_str(), nullptr,
       nullptr);
 }
+
+bool vk_window::should_close() { return !glfwWindowShouldClose(m_window); }

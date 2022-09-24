@@ -105,7 +105,7 @@ void vk_surface::init_depth_buffer() {
   auto vkDevice = reinterpret_cast<vk_device *>(device.get());
 
   vk::FormatProperties formatProps =
-      vkDevice->get_physical()->getFormatProperties(format);
+      vkDevice->get_physical().getFormatProperties(format);
 
   vk::ImageTiling tiling;
   if (formatProps.linearTilingFeatures &
@@ -114,45 +114,51 @@ void vk_surface::init_depth_buffer() {
   } else if (formatProps.optimalTilingFeatures &
              vk::FormatFeatureFlagBits::eDepthStencilAttachment) {
     tiling = vk::ImageTiling::eOptimal;
-  }
-  else {
+  } else {
     THROW_P000003;
   }
   auto wind = hal_factory::instance()->get_window();
   auto vkWindow = reinterpret_cast<vk_window *>(wind.get());
 
-  vk::ImageCreateInfo imageCreateInfo(vk::ImageCreateFlags(), vk::ImageType::e2D, format, vk::Extent3D(vkWindow->get_size(), 1), 1, 1, vk::SampleCountFlagBits::e1, tiling, vk::ImageUsageFlagBits::eDepthStencilAttachment);
+  vk::ImageCreateInfo imageCreateInfo(
+      vk::ImageCreateFlags(), vk::ImageType::e2D, format,
+      vk::Extent3D(vkWindow->get_size(), 1), 1, 1, vk::SampleCountFlagBits::e1,
+      tiling, vk::ImageUsageFlagBits::eDepthStencilAttachment);
 
   m_depthImage = vkDevice->get_device().createImage(imageCreateInfo);
-  
-  vk::PhysicalDeviceMemoryProperties memoryProps = vkDevice->get_physical().getMemoryProperties();
-  vk::MemoryRequirements memoryReqs = vkDevice->get_device().getImageMemoryRequirements(m_depthImage);
+
+  vk::PhysicalDeviceMemoryProperties memoryProps =
+      vkDevice->get_physical().getMemoryProperties();
+  vk::MemoryRequirements memoryReqs =
+      vkDevice->get_device().getImageMemoryRequirements(m_depthImage);
 
   uint32_t typeBits = memoryReqs.memoryTypeBits;
   uint32_t typeIndex = ~0;
 
-  for (uint32_t i = 0; i< memoryProps.memoryTypeCount; i++){
-          if ( ( typeBits & 1 ) &&
-           ( ( memoryProps.memoryTypes[i].propertyFlags & vk::MemoryPropertyFlagBits::eDeviceLocal ) == vk::MemoryPropertyFlagBits::eDeviceLocal ) )
-      {
-        typeIndex = i;
-        break;
-      }
-      typeBits >>= 1;
+  for (uint32_t i = 0; i < memoryProps.memoryTypeCount; i++) {
+    if ((typeBits & 1) && ((memoryProps.memoryTypes[i].propertyFlags &
+                            vk::MemoryPropertyFlagBits::eDeviceLocal) ==
+                           vk::MemoryPropertyFlagBits::eDeviceLocal)) {
+      typeIndex = i;
+      break;
+    }
+    typeBits >>= 1;
   }
   assert(typeIndex != ~0);
-  vk::DeviceMemory depthMemory = vkDevice->get_device().allocateMemory(vk::MemoryAllocateInfo(memoryReqs.size, typeIndex));
+  vk::DeviceMemory depthMemory = vkDevice->get_device().allocateMemory(
+      vk::MemoryAllocateInfo(memoryReqs.size, typeIndex));
 
   vkDevice->get_device().bindImageMemory(m_depthImage, depthMemory, 0);
 
-  m_depthView = vkDevice->get_device().createImageView(vk::ImageViewCreateInfo(vk::ImageViewCreateFlags(), m_depthImage, vk::ImageViewType::e2D, format, {}, {vk::ImageAspectFlagBits::eDepth, 0, 1, 0, 1}));
-
+  m_depthView = vkDevice->get_device().createImageView(vk::ImageViewCreateInfo(
+      vk::ImageViewCreateFlags(), m_depthImage, vk::ImageViewType::e2D, format,
+      {}, {vk::ImageAspectFlagBits::eDepth, 0, 1, 0, 1}));
 }
 
 void vk_surface::destroy() {
   auto device = hal_factory::instance()->get_device();
   auto vkDevice = reinterpret_cast<vk_device *>(device.get());
-  
+
   auto dev = vkDevice->get_device();
   dev.destroyImageView(m_depthView);
   dev.freeMemory(m_depthMemory);

@@ -9,6 +9,7 @@ class vk_window : public window {
 public:
   void initialize() override;
   void destroy() override;
+  bool should_close() override;
   GLFWwindow *get_window() const { return m_window; };
   vk::Extent2D get_size() const { return m_size; };
 

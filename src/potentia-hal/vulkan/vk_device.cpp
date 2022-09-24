@@ -93,13 +93,14 @@ void vk_device::init_logical_device() {
   std::vector<vk::QueueFamilyProperties> queueFamilyProperties =
       m_physicalDevice.getQueueFamilyProperties();
 
-    m_graphicsQueueFamilyIndex = find_graphics_queue_index(queueFamilyProperties);
-    m_presentQueueFamilyIndex = find_surface_queue_index(queueFamilyProperties, &m_graphicsQueueFamilyIndex);
+  m_graphicsQueueFamilyIndex = find_graphics_queue_index(queueFamilyProperties);
+  m_presentQueueFamilyIndex = find_surface_queue_index(
+      queueFamilyProperties, &m_graphicsQueueFamilyIndex);
 
   float queuePriority = 0.0f;
-  vk::DeviceQueueCreateInfo deviceQueueCreateInfo(
-      vk::DeviceQueueCreateFlags(), m_graphicsQueueFamilyIndex,
-      1, &queuePriority);
+  vk::DeviceQueueCreateInfo deviceQueueCreateInfo(vk::DeviceQueueCreateFlags(),
+                                                  m_graphicsQueueFamilyIndex, 1,
+                                                  &queuePriority);
   m_device = m_physicalDevice.createDevice(
       vk::DeviceCreateInfo(vk::DeviceCreateFlags(), deviceQueueCreateInfo));
 }
@@ -169,8 +170,9 @@ uint32_t vk_device::find_surface_queue_index(
       }
     }
   }
-  if (presentQueueFamilyIndex == queueFamilyProperties.size() || *gfxFamilyIndex == queueFamilyProperties.size()){
-      THROW_P000002;
+  if (presentQueueFamilyIndex == queueFamilyProperties.size() ||
+      *gfxFamilyIndex == queueFamilyProperties.size()) {
+    THROW_P000002;
   }
   return presentQueueFamilyIndex;
 }
