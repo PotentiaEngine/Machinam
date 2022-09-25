@@ -2,6 +2,28 @@
   "name": "potentia",
   "version-string": "0.0.1.0",
   "dependencies": [
-    "gtest:x64-windows"
-  ]
+    "vulkan",
+    "eigen3",
+    "glfw3",
+    "glm"
+  ],
+  "default-features": [
+    "toolgamecodegen",
+    "toolassetbundler"
+  ],
+  "features": {
+    "toolassetbundler": {
+      "description": "asset bundler manager tool",
+      "dependencies": [
+        "cli11",
+        "assimp"
+      ]
+    },
+    "toolgamecodegen": {
+      "description": "codegen build tool",
+      "dependencies": [
+        "cli11"
+      ]
+    }
+  }
 }
